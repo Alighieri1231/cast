@@ -121,14 +121,14 @@ class MainWidget(QtWidgets.QMainWindow):
         central = QtWidgets.QWidget()
         self.setCentralWidget(central)
 
-        # ip = QtWidgets.QLineEdit("192.168.1.1")
-        # ip.setInputMask("000.000.000.000")
-        ip = QtWidgets.QLineEdit("2603:7081:14f0:46a0:d28f:b2ba:455e:fb20")
+        ip = QtWidgets.QLineEdit("192.168.1.1")
+        ip.setInputMask("000.000.000.000")
+        #ip = QtWidgets.QLineEdit("2603:7081:14f0:46a0:d28f:b2ba:455e:fb20")
         # ip.setInputMask("2603:7081:14f0:46a0:b2b3:bba:380d:2465")
-        ip.setInputMask("HHHH:HHHH:HHHH:HHHH:HHHH:HHHH:HHHH:HHHH;_")
+        #ip.setInputMask("HHHH:HHHH:HHHH:HHHH:HHHH:HHHH:HHHH:HHHH;_")
 
         # 2) now set the text to your actual IPv6 address
-        ip.setText("2603:7081:14f0:46a0:d28f:b2ba:455e:fb20")
+        #ip.setText("2603:7081:14f0:46a0:d28f:b2ba:455e:fb20")
 
         port = QtWidgets.QLineEdit("41015")
         port.setInputMask("00000")
