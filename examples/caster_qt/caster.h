@@ -1,3 +1,5 @@
+#include <QEvent>
+#include <QQuaternion>
 #pragma once
 
 namespace Ui

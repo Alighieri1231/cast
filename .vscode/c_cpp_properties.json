@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "name": "Mac",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/Users/emilio/anaconda3/include/**",           
+                "/Users/emilio/anaconda3/include/qt/QtCore",                // QEvent lives here
+                "/Users/emilio/anaconda3/include/qt/QtGui",                 // QQuaternion lives here
+                "/Users/emilio/anaconda3/include/qt/QtWidgets",             // QApplication, QWidget, etc.
+                "/Users/emilio/anaconda3/include/qt/QtCore/5.15.2",         // if versioned subfolder exists
+                "/Users/emilio/anaconda3/include/qt/QtGui/5.15.2",
+                "/Users/emilio/anaconda3/include/qt/QtWidgets/5.15.2"
+            
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/clang++",
+            "cStandard": "c17",
+            "cppStandard": "c++14",
+            "intelliSenseMode": "macos-clang-arm64"
+        }
+    ],
+    "version": 4
+}

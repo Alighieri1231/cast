@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "qevent": "cpp",
+        "qquaternion": "cpp"
+    }
+}

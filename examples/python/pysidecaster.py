@@ -7,8 +7,12 @@ from pathlib import Path
 from typing import Final
 
 if sys.platform.startswith("linux"):
-    libcast_handle = ctypes.CDLL("./libcast.so", ctypes.RTLD_GLOBAL)._handle  # load the libcast.so shared library
-    pyclariuscast = ctypes.cdll.LoadLibrary("./pyclariuscast.so")  # load the pyclariuscast.so shared library
+    libcast_handle = ctypes.CDLL(
+        "./libcast.so", ctypes.RTLD_GLOBAL
+    )._handle  # load the libcast.so shared library
+    pyclariuscast = ctypes.cdll.LoadLibrary(
+        "./pyclariuscast.so"
+    )  # load the pyclariuscast.so shared library
 
 import pyclariuscast
 from PySide6 import QtCore, QtGui, QtWidgets
@@ -117,9 +121,16 @@ class MainWidget(QtWidgets.QMainWindow):
         central = QtWidgets.QWidget()
         self.setCentralWidget(central)
 
-        ip = QtWidgets.QLineEdit("192.168.1.1")
-        ip.setInputMask("000.000.000.000")
-        port = QtWidgets.QLineEdit("5828")
+        # ip = QtWidgets.QLineEdit("192.168.1.1")
+        # ip.setInputMask("000.000.000.000")
+        ip = QtWidgets.QLineEdit("2603:7081:14f0:46a0:d28f:b2ba:455e:fb20")
+        # ip.setInputMask("2603:7081:14f0:46a0:b2b3:bba:380d:2465")
+        ip.setInputMask("HHHH:HHHH:HHHH:HHHH:HHHH:HHHH:HHHH:HHHH;_")
+
+        # 2) now set the text to your actual IPv6 address
+        ip.setText("2603:7081:14f0:46a0:d28f:b2ba:455e:fb20")
+
+        port = QtWidgets.QLineEdit("41015")
         port.setInputMask("00000")
 
         conn = QtWidgets.QPushButton("Connect")
@@ -142,7 +153,9 @@ class MainWidget(QtWidgets.QMainWindow):
                     self.statusBar().showMessage("Connected")
                     conn.setText("Disconnect")
                 else:
-                    self.statusBar().showMessage("Failed to connect to {0}".format(ip.text()))
+                    self.statusBar().showMessage(
+                        "Failed to connect to {0}".format(ip.text())
+                    )
             else:
                 if cast.disconnect():
                     self.statusBar().showMessage("Disconnected")
@@ -267,12 +280,16 @@ class MainWidget(QtWidgets.QMainWindow):
             self.statusBar().showMessage("Image Stopped")
         else:
             self.run.setText("Freeze")
-            self.statusBar().showMessage("Image Running (check firewall settings if no image seen)")
+            self.statusBar().showMessage(
+                "Image Running (check firewall settings if no image seen)"
+            )
 
     # handles button messages
     @Slot(int, int)
     def button(self, btn, clicks):
-        self.statusBar().showMessage("Button {0} pressed w/ {1} clicks".format(btn, clicks))
+        self.statusBar().showMessage(
+            "Button {0} pressed w/ {1} clicks".format(btn, clicks)
+        )
 
     # handles new images
     @Slot(QtGui.QImage)
@@ -335,7 +352,9 @@ def newRawImage(image, lines, samples, bps, axial, lateral, timestamp, jpg, rf, 
 # @param micronsPerSample microns per sample for an m spectrum
 # @param velocityPerSample velocity per sample for a pw spectrum
 # @param pw flag that is true for a pw spectrum, false for an m spectrum
-def newSpectrumImage(image, lines, samples, bps, period, micronsPerSample, velocityPerSample, pw):
+def newSpectrumImage(
+    image, lines, samples, bps, period, micronsPerSample, velocityPerSample, pw
+):
     return
 
 
@@ -364,7 +383,14 @@ def buttonsFn(button, clicks):
 
 ## main function
 def main():
-    cast = pyclariuscast.Caster(newProcessedImage, newRawImage, newSpectrumImage, newImuData, freezeFn, buttonsFn)
+    cast = pyclariuscast.Caster(
+        newProcessedImage,
+        newRawImage,
+        newSpectrumImage,
+        newImuData,
+        freezeFn,
+        buttonsFn,
+    )
     app = QtWidgets.QApplication(sys.argv)
     widget = MainWidget(cast)
     widget.resize(640, 480)
