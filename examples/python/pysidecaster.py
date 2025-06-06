@@ -130,7 +130,7 @@ class MainWidget(QtWidgets.QMainWindow):
         # 2) now set the text to your actual IPv6 address
         #ip.setText("2603:7081:14f0:46a0:d28f:b2ba:455e:fb20")
 
-        port = QtWidgets.QLineEdit("41015")
+        port = QtWidgets.QLineEdit("5828")
         port.setInputMask("00000")
 
         conn = QtWidgets.QPushButton("Connect")
